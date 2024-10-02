@@ -2,6 +2,9 @@ package service
 
 import (
 	"context"
+	"github.com/getsentry/sentry-go"
+	"github.com/go-redis/redis/v8"
+	"github.com/stripe/stripe-go/v74"
 	"productCatalog/ent"
 	"productCatalog/model"
 	pb "productCatalog/proto"

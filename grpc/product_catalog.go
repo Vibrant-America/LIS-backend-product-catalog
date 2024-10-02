@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type PricingRpcHandler struct {
+type ProductCatalogRpcHandler struct {
 	TaxService service.IStripeService
 }
 

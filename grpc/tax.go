@@ -7,7 +7,7 @@ import (
 	log "go-micro.dev/v4/logger"
 )
 
-func (e *PricingRpcHandler) CalculateTax(ctx context.Context, in *pb.CalculateTaxRequest, out *pb.CalculateTaxResponse) error {
+func (e *ProductCatalogRpcHandler) CalculateTax(ctx context.Context, in *pb.CalculateTaxRequest, out *pb.CalculateTaxResponse) error {
 	log.Info("handler - CalculateTax")
 	defer panicRecover()
 

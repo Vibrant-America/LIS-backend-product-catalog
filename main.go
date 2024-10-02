@@ -300,7 +300,7 @@ func main() {
 	//micro.RegisterSubscriber("lis_logs", gRPCserver, subscriber.SubEv, server.SubscriberQueue("go.micro.lis"))
 
 	// Register handler
-	err = pb.RegisterproductCatalogServiceHandler(gRPCserver, &grpcHandler.productCatalogRpcHandler{
+	err = pb.RegisterProductCatalogServiceHandler(gRPCserver, &grpcHandler.ProductCatalogRpcHandler{
 		TaxService: productCatalogService.NewStripeService(client, redisClient, common.StripeKeyZb),
 	})
 	if err != nil {
@@ -326,7 +326,7 @@ func main() {
 	//   - stack means whether output the stack info.
 	router.Use(middleware.RecoveryWithZap(common.ZapLogger, true))
 
-	productCatalogHandler := handler.productCatalog{
+	productCatalogHandler := handler.ProductCatalog{
 		MerchandiseService: productCatalogService.NewMerchandiseService(client, redisClient),
 		Producer:           productCatalogService.NewProducerService(producer),
 		Consumer:           handler.NewConsumer(consumerGroup),
