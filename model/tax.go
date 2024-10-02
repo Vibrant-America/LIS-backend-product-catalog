@@ -6,12 +6,6 @@ type CalculateTaxRequest struct {
 	ShippingFee     float64           `json:"shipping_fee"`
 }
 
-type CalculateTaxResponse struct {
-	ID          string  `json:"id"`
-	AmountTotal float64 `json:"amount_total"`
-	TaxAmount   float64 `json:"tax_amount"`
-}
-
 type ProductLineItem struct {
 	Amount      float64 `json:"amount"`
 	Quantity    int64   `json:"quantity"`
