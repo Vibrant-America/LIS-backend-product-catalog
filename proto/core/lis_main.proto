@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./;lis";
+
+import "test.proto";
+import "address.proto";
+import "clinic.proto";
+import "contact.proto";
+import "customer.proto";
+import "instrument.proto";
+import "order.proto";
+import "panel.proto";
+import "patient.proto";
+import "reference-range.proto";
+import "sales.proto";
+import "sample.proto";
+import "setting.proto";
+//import "test.proto";
+import "tube.proto";
+import "user.proto";
+import "internal-user.proto";
+import "health.proto";
+import "permission.proto";
+
+package lis;

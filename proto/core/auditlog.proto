@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+package auditlog;
+
+option go_package = "./;lis";
+
+service AuditLogService{
+  // SearchAuditLog
+  rpc SearchAuditLog (SearchAuditLogRequest) returns (SearchAuditLogResponse) {}
+  // RecordAuditLog
+  rpc RecordAuditLog (RecordAuditLogRequest) returns (RecordAuditLogResponse) {}
+
+}
+
+// SearchAuditLogRequest is a message for searching audit log data
+message SearchAuditLogRequest {
+  string event_id = 1; // Log ID Provided by the User, OR System Provided UUID
+  string event_name = 2;
+  string entrypoint = 3;
+  string service_name = 4;
+  string service_type = 5;
+  string entity_type = 6;
+  string entity_id = 7;
+  string attribute_name = 8;
+  string attribute_value_prior = 9;
+  string attribute_value_post = 10;
+  string entity_snapshot = 11;
+  int32 itemsPerPage = 12;
+  int32 pageNumber = 13;
+  string user = 14;
+}
+
+// SearchAuditLogResponse is a message returned after searching the audit log
+message SearchAuditLogResponse {
+  repeated AuditLogItem items = 1;
+}
+
+// AuditLogItem represents a single audit log item
+message AuditLogItem {
+  string event_timestamp = 1; // The User Is Not Allowed to Modify the Time, Automatically Assigned by System
+  string event_id = 2; // Log ID Provided by the User, OR System Provided UUID
+  string event_name = 3;
+  string entrypoint = 4;
+  string service_name = 5;
+  string service_type = 6;
+  string entity_type = 7;
+  string entity_id = 8;
+  string attribute_name = 9;
+  string attribute_value_prior = 10;
+  string attribute_value_post = 11;
+  string entity_snapshot = 12; // json stringify
+  string user = 13;
+}
+
+message RecordAuditLogRequest {
+  string event_id = 1; // Log ID Provided by the User, OR System Provided UUID
+  string event_name = 2;
+  string entrypoint = 3;
+  string service_name = 4;
+  string service_type = 5;
+  string entity_type = 6;
+  string entity_id = 7;
+  string attribute_name = 8;
+  string attribute_value_prior = 9;
+  string attribute_value_post = 10;
+  string entity_snapshot = 11;
+  string user = 12;
+}
+
+// RecordAuditLogResponse is a message returned after storing the audit log
+message RecordAuditLogResponse {
+  string event_id = 1;
+}

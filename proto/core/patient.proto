@@ -1,0 +1,579 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./;lis";
+
+package lis;
+import "order.proto";
+import "contact.proto";
+import "address.proto";
+import "customer.proto";
+import "sales.proto";
+import "sample.proto";
+service PatientService{
+  // rpc getaPatient (PatientID) returns (patients){}
+  rpc CreatePatient(CreatePatientRequest) returns (patients){}
+  rpc ListCustomerPatients (PatientPage) returns (PatientListMinimum){}
+  rpc InitialPatientPageHome (PatientPage) returns (InitialPatientPageResponse){}
+  rpc LoadSinglePatientDetailInfo(LoadSinglePatientDetailInfoRequest) returns (LoadSinglePatientDetailInfoResponse){}
+  rpc ListCustomerPatientsCount (PatientPage) returns (ListCustomerPatientsCountResponse){}
+  rpc CountCustomerPatients (CustomerID) returns (count){}
+  rpc CountPatientsName (PatientNameCount) returns (count){}
+  rpc CountPatientsDOB (patientBirthdateCount) returns (count){}
+  rpc CountPatientsAccessionID (accessionIDCount) returns (count){}
+  rpc CheckPatientsName (PatientName) returns (PatientList){}
+  rpc CheckPatientsDOB (patientBirthdate) returns (PatientList){}
+  rpc CheckPatientsAccessionID (accessionID) returns (PatientList){}
+  rpc GetPatient (PatientID) returns (PatientDetails){}
+  rpc GetSalesByPatientID (PatientID) returns (saleDetails){}
+  rpc UpdatePatientInfo(UpdatePatientInfoRequest) returns (Patient){}
+  // Added after Version 0.7.2
+  rpc ListPatients(PatientIDList) returns (PatientDetailsGroup){}
+  rpc CreatePatient153(CreatePatientlinuxRequest) returns (patientslinux){}
+  rpc UpdatePatient153(UpdatePatientlinuxRequest) returns (patientslinux){}
+  rpc CheckPatientsClinic (PatientClinic) returns (PatientList){}
+
+  // Add for the patient page
+  rpc FlagPatient(FlagPatientRequest) returns (FlagPatientResponse){}
+  rpc AddPatientFlag(AddPatientFlagRequest) returns (AddPatientFlagResponse){}
+  rpc UpdatePatientHeightandWeight (UpdateHeightandWeight)returns (UpdatePatientHeightandWeightResponse){}
+  rpc ListPatientFlagTypes (ListPatientFlagTypesRequest) returns (ListPatientFlagTypesResponse){}
+
+  rpc UnflagPatient(UnflagPatientRequest) returns (UnflagPatientResponse){}
+
+  // Metadata Test
+  rpc ServerSideMeta(MetaRequest) returns (MetaResponse){}
+  rpc GetPatientInternalNotes (GetPatientInternalNotesRequest) returns (GetPatientInternalNotesResponse){}
+
+}
+
+
+message LoadSinglePatientDetailInfoResponse{
+  InitialPatientPagePatientMinimum Patient = 1;
+}
+
+message LoadSinglePatientDetailInfoRequest{
+  string patient_id = 1;
+  string customer_id = 2;
+  PatientFilter patient_flag_filters = 3;
+
+}
+
+
+message ListCustomerPatientsCountResponse{
+  int32 count = 1;
+}
+message GetPatientInternalNotesRequest{
+  string patient_id = 1;
+}
+message GetPatientInternalNotesResponse{
+  repeated PatientInternalNotes notes = 1;
+
+}
+
+message PatientInternalNotes{
+  int32 internal_note_id = 1;
+  string note = 2;
+  int32 patient_id = 3;
+  int32 created_by_customer_id = 4;
+  string created_time = 5;
+  string internal_note_read_status = 6;
+  string modified_by = 7;
+  string modified_time = 8;
+  string internal_note_color = 9;
+  string internal_note_type = 10;
+  string internal_note_icon = 11;
+  bool is_active = 12;
+}
+
+message MetaRequest{
+  string meta = 1;
+}
+
+message MetaResponse{
+  string meta = 1;
+}
+
+// message UnflagPatientRequest{
+//   string patient_id =1;
+//   repeated string patient_flag_ids =2;
+// }
+
+message AddPatientFlagRequest{
+  string patient_flag_name =1;
+  string patient_flag_description =2;
+  string patient_flag_color =3;
+  string patient_flaged_by =4;
+}
+message AddPatientFlagResponse{
+  int32 patient_flag_id =1;
+  string patient_flag_name =2;
+  string patient_flag_description =3;
+  string patient_flag_color =4;
+  string patient_flaged_by =5;
+  bool patient_flag_is_active =6;
+  string patient_flag_created_at =7;
+}
+
+message ListPatientFlagTypesRequest{
+  string customer_id =1;
+}
+
+message ListPatientFlagTypesResponse{
+  repeated PatientTypes patient_flag_types =1;
+}
+
+message PatientTypes{
+  int32 patient_flag_id =1;
+  string patient_flag_name =2;
+  string patient_flag_description =3;
+  bool patient_flag_is_active =4;
+  string patient_flag_created_at =5;
+}
+
+message UpdateHeightandWeight{
+  string patient_id = 1;
+  string patient_height = 2;
+  string patient_weight = 3;
+  
+}
+
+message UpdatePatientHeightandWeightResponse{
+  string bmi = 1;
+  
+}
+
+message PatientIDList{
+  repeated string patient_ids = 1;
+}
+
+message PatientDetailsGroup{
+  repeated PatientDetails response = 1;
+}
+
+message patients{
+  int32 patient_id = 1;
+  int32 user_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  string patient_middle_name = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_legal_lastname = 9;
+  string patient_honorific = 10;
+  string patient_suffix = 11;
+  string patient_marital = 12;
+  string patient_ethnicity = 13;
+  string patient_birthdate = 14;
+  string patient_ssn = 15;
+  string patient_barcode_internal = 16;
+  string patient_height = 17;
+  string patient_weight = 18;
+  int32 officeally_id = 19;
+  string flag = 20;
+  repeated InitialPatientPageOrderMinimum patient_order = 21;
+
+}
+
+message UpdatePatientInfoRequest{
+  int32 patient_id = 1;
+  string address_type = 2;
+  string street_address = 3;
+  string APT_PO = 4;
+  string city = 5;
+  string state = 6;
+  string zipcode = 7;
+  string country = 8;
+  bool address_confirmed = 9;
+  bool is_primary_address = 10;
+  string phone = 11;
+  string email = 12;
+}
+
+
+message CreatePatientRequest{
+
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  string patient_middle_name = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_legal_lastname = 9;
+  string patient_honorific = 10;
+  string patient_suffix = 11;
+  string patient_marital = 12;
+  string patient_ethnicity = 13;
+  string patient_birthdate = 14;
+  string patient_ssn = 15;
+  string patient_barcode_internal = 16;
+  string patient_height = 17;
+  string patient_weight = 18;
+  int32 officeally_id = 19;
+  
+}
+message PatientID{
+    int32 patient_id = 1;
+}
+
+message accessionID{
+  string accession_id = 1;
+  string customer_id = 2;
+  string page = 3;
+  string perPage = 4;
+  string sorting_field_input = 5;
+  string sorting_order_input = 6;
+}
+
+message accessionIDCount{
+  string accession_id = 1;
+  string customer_id = 2;
+}
+
+message PatientMinimum{
+  int32 patient_id = 1;
+  int32 user_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  string patient_middle_name = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_birthdate = 9;
+  string patient_height = 10;
+  string patient_weight = 11;
+
+  bool patient_flagged = 12;
+  repeated PatientFlags patient_flags = 13;
+
+  repeated OrderMinimum patient_order = 14;
+  repeated Contact patient_contact = 15;
+  repeated Address patient_address = 16;
+
+}
+
+message InitialPatientPagePatientMinimum{
+  int32 patient_id = 1;
+  int32 user_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  string patient_middle_name = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_birthdate = 9;
+  string patient_height = 10;
+  string patient_weight = 11;
+  bool patient_flagged = 12;
+  repeated PatientFlags patient_flags = 13;
+  repeated InitialPatientPageOrderMinimum patient_order = 14;
+  repeated Contact patient_contact = 15;
+  repeated Address patient_address = 16;
+  string load_more_option = 17;
+  string patient_ny_waive_form_issue_status = 18;
+}
+
+
+message Patient{
+  int32 patient_id = 1;
+  int32 user_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  string patient_middle_name = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_birthdate = 9;
+  string patient_height = 10;
+  string patient_weight = 11;
+
+  bool patient_flagged = 12;
+  repeated PatientFlags patient_flags = 13;
+
+  repeated Order patient_order = 14;
+  repeated Contact patient_contact = 15;
+  repeated Address patient_address = 16;
+}
+
+message PatientPage{
+  string clinic_id = 1;
+  string customer_id = 2;
+  string page = 3;
+  string perPage = 4;
+  string sorting_field_input = 5;
+  string sorting_order_input = 6;
+  PatientFilter patient_flag_filters = 7;
+  string patient_name = 8;
+  string accession_id = 9;
+  string patient_birthdate = 10;
+  string start_date = 11;
+  string end_date = 12;
+}
+message PatientFilter{
+  PatientFilterFlagOR patient_flag_or_filter = 1;
+  PatientFilterFlagAND patient_flag_and_filter = 2;
+  PatientFilterFlagNOR patient_flag_nor_filter = 3;
+}
+message PatientFilterFlagOR{
+  repeated string patient_flags = 1;
+  repeated string patient_order_flags = 2;
+}
+message PatientFilterFlagAND{
+  repeated string patient_flags = 1;
+  repeated string patient_order_flags = 2;
+}
+message PatientFilterFlagNOR{
+  repeated string patient_flags = 1;
+  repeated string patient_order_flags = 2;
+}
+
+message PatientName{
+    string patient_name = 1;
+    string customer_id = 2;
+    string page = 3;
+    string perPage = 4;
+    string sorting_field_input = 5;
+    string sorting_order_input = 6;
+}
+
+message PatientClinic{
+    string patient_name = 1;
+    string page = 2;
+    string perPage = 3;
+    string clinic_name = 4;
+    string clinic_id = 5;
+    string sorting_field_input = 6;
+    string sorting_order_input = 7;
+}
+
+message PatientNameCount{
+    string patient_name = 1;
+    string customer_id = 2;
+}
+
+message patientBirthdate{
+    string customer_id = 1;
+    string dob = 2;
+    string page = 3;
+    string perPage = 4;
+    string sorting_field_input = 5;
+    string sorting_order_input = 6;
+}
+
+message patientBirthdateCount{
+    string customer_id = 1;
+    string dob = 2;
+}
+
+message PatientList{
+  repeated Patient Patient = 1;
+  int32 count = 2;
+}
+
+message PatientListMinimum{
+  repeated PatientMinimum Patient = 1;
+  int32 count = 2;
+}
+
+message InitialPatientPageResponse{
+  repeated InitialPatientPagePatientMinimum Patient = 1;
+}
+
+message count{
+  int32 _count = 1;
+}
+
+message PatientCountList{
+  count count = 1;
+  repeated Patient Patient = 2;
+}
+
+message PatientDetails{
+  int32 patient_id = 1;
+  int32 user_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  string patient_middle_name = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_legal_lastname = 9;
+  string patient_honorific = 10;
+  string patient_suffix = 11;
+  string patient_marital = 12;
+  string patient_ethnicity = 13;
+  string patient_birthdate = 14;
+  string patient_ssn = 15;
+  string patient_barcode_internal = 16;
+  string patient_height = 17;
+  string patient_weight = 18;
+  int32 officeally_id = 19;
+  int32 customer_id = 20;
+
+  bool patient_flagged = 21;
+  repeated PatientFlags patient_flags = 22;
+
+  repeated samples sample = 23;
+  repeated Address patient_address = 24;
+  repeated Contact patient_contact = 25;
+  repeated Customer patient_customer = 26;
+  repeated Order patient_order = 27;
+  int32 original_patient_id = 28;
+  string patient_service_date = 29;
+  string patient_ny_waive_form_issue_status = 30;
+
+}
+
+message CreatePatientlinuxRequest{
+  int32 customer_id = 1;
+  string patient_medical_record_number = 2;
+  string patient_gender = 3;
+  string patient_firstname = 4;
+  string patient_lastname = 5;
+  string patient_middlename = 6;
+  string patient_legal_firstname = 7;
+  string patient_legal_lastname = 9;
+  string patient_honorific = 10;
+  string patient_suffix = 11;
+  string patient_marital = 12;
+  string patient_ethnicity = 13;
+  string patient_birthdate = 14;
+  string patient_ssn = 15; 
+  string patient_barcode_internal = 16;
+  string patient_height = 17;
+  string patient_weight = 18;
+  int32 officeally_id = 19;
+  string patient_address = 20;
+  string patient_city = 21;
+  string patient_country = 22;
+  string patient_state = 23;
+  string patient_zipcode = 24;
+  string patient_email = 25;
+  string patient_phone_no = 26;
+  int32 confirmed = 27;
+  string uploaded_status = 28;
+  string uploaded_time = 29;
+  string uploaded_vg_status = 30;
+  string uploaded_vg_time = 31;
+  int32 is_patient_flag_for_review_customer = 32;
+  string patient_email_copy1 = 33;
+  int32 patient_country_id = 34;
+  int32 patient_app_id = 35;
+}
+  
+message patientslinux{
+  int32 patient_id = 1;
+  int32 customer_id = 2;
+  string patient_gender = 3;
+  string patient_firstname = 4;
+  string patient_lastname = 5;
+  string patient_middlename = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_legal_lastname = 9;
+  string patient_honorific = 10;
+  string patient_suffix = 11;
+  string patient_marital = 12;
+  string patient_ethnicity = 13;
+  string patient_birthdate = 14;
+  string patient_ssn = 15;
+  string patient_barcode_internal = 16;
+  string patient_height = 17;
+  string patient_weight = 18;
+  int32 officeally_id = 19;
+  string patient_address = 20;
+  string patient_city = 21;
+  string patient_country = 22;
+  string patient_state = 23;
+  string patient_zipcode = 24;
+  string patient_email = 25;
+  string patient_phone_no = 26;
+  int32 confirmed = 27;
+  string uploaded_status = 28;
+  string uploaded_time = 29;
+  string uploaded_vg_status = 30;
+  string uploaded_vg_time = 31;
+  int32 is_patient_flag_for_review_customer = 32;
+  string patient_email_copy1 = 33;
+  int32 patient_country_id = 34;
+  int32 patient_app_id = 35;
+}
+
+message UpdatePatientlinuxRequest{
+  int32 patient_id = 1;
+  int32 customer_id = 2;
+  string patient_gender = 3;
+  string patient_firstname = 4;
+  string patient_lastname = 5;
+  string patient_middlename = 6;
+  string patient_medical_record_number = 7;
+  string patient_legal_firstname = 8;
+  string patient_legal_lastname = 9;
+  string patient_honorific = 10;
+  string patient_suffix = 11;
+  string patient_marital = 12;
+  string patient_ethnicity = 13;
+  string patient_birthdate = 14;
+  string patient_ssn = 15;
+  string patient_barcode_internal = 16;
+  string patient_height = 17;
+  string patient_weight = 18;
+  int32 officeally_id = 19;
+  string patient_address = 20;
+  string patient_city = 21;
+  string patient_country = 22;
+  string patient_state = 23;
+  string patient_zipcode = 24;
+  string patient_email = 25;
+  string patient_phone_no = 26;
+  int32 confirmed = 27;
+  string uploaded_status = 28;
+  string uploaded_time = 29;
+  string uploaded_vg_status = 30;
+  string uploaded_vg_time = 31;
+  int32 is_patient_flag_for_review_customer = 32;
+  string patient_email_copy1 = 33;
+  int32 patient_country_id = 34;
+  int32 patient_app_id = 35;
+}
+
+message FlagPatientRequest{
+  string patient_id =1;
+  repeated string patient_flag_names =2;
+}
+
+message UnflagPatientRequest{
+  string patient_id = 1;
+  repeated string patient_flag_names =2;
+}
+
+message FlagPatientResponse{
+  int32 patient_id = 1;
+  int32 customer_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  bool patient_flagged = 6;
+  repeated PatientFlags patient_flags = 7;
+}
+
+message PatientFlags{
+  int32 patient_flag_id =1;
+  string patient_flag_name =2;
+  string patient_flag_description =3;
+  bool patient_flag_is_active =4;
+  string patient_flag_created_at =5;
+}
+
+message UnflagPatientResponse{
+  int32 patient_id = 1;
+  int32 customer_id = 2;
+  string patient_gender = 3;
+  string patient_first_name = 4;
+  string patient_last_name = 5;
+  bool patient_flagged = 6;
+  repeated PatientFlags patient_flags = 7;
+}

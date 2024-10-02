@@ -1,0 +1,281 @@
+syntax = "proto3";
+option go_package = "./;lis";
+
+import "test.proto";
+package lis;
+
+service ReferenceRangeService{
+    rpc GetTestReferenceRange (TestID) returns (ReferenceRangeGroupList){}
+    rpc GetTestReferenceRangeMasterID (MasterID) returns (ReferenceRangeList){}
+    // New Reference Range Table
+    rpc GetPatientReferenceRange (PatientInfo) returns (ResultRespondList){}
+    rpc GetMasterlistIDReferenceRange(GetMasterlistIDReferenceRangeRequest) returns (GetMasterlistIDReferenceRangeResponse){}
+    rpc GetPatientReferenceRangeInOut(PatientInfo) returns (ResultRespondInOutList){}
+    rpc GetPatientReferenceRangeInOutBatch(PatientInfos) returns (ResultRespondInOutLists){}
+
+    rpc GetAccessionIDReferenceRange (BarcodeInfo) returns (ResultRespondList){}
+    rpc GetPatientReferenceRangeInOutall(PatientInfo) returns (ResultRespondInOutList){}
+    rpc GetPatientDetailedReferenceRangeInOut(PatientInfo) returns (DetailedResultRespondInOutList){}
+    rpc GetPatientDetailedReferenceRangeInOutBatch(PatientInfos) returns (DetailedResultRespondInOutLists){}
+    rpc GetReferenceRangeByTestID(GetReferenceRangeByTestIDRequest) returns(GetReferenceRangeByTestIDResponse){}
+
+    
+}
+
+message GetReferenceRangeByTestIDRequest{
+    repeated string test_ids = 1;
+}
+
+message DetailedReferenceRangeBySingleTestID{
+    string test_id = 1;
+    repeated DetailedResultRespond ranges = 2;
+}
+
+message  GetReferenceRangeByTestIDResponse{
+    repeated DetailedReferenceRangeBySingleTestID result = 1;
+}
+
+
+
+message PatientInfos{
+    repeated PatientInfo patientInfos = 1;
+}
+
+message DetailedResultRespond{
+    int32 reference_range_id = 1;
+    int32 test_id = 2;
+    string reference_range_name = 3;
+    string reference_range_gender = 4;
+    string reference_range_age_start = 5;
+    string reference_range_age_end = 6;
+    int32 master_list_id = 7;
+    string reference_range_type = 8;
+    string reference_range_value_type = 9;
+    string reference_range_constant = 10;
+    string reference_range_value_min = 11;
+    string reference_range_value_max = 12;
+    string reference_range_description = 13;
+    string precision_digit = 16;
+    bool isActive = 17;
+    string modified_by = 18;
+    string modified_time = 19;
+    string unit_of_measure = 20;
+    string am_or_pm = 21;
+    string hormones = 22;
+    string effective_period_start = 23;
+    string effective_period_end = 24;
+    string reportable_range_min = 25;
+    string reportable_range_max = 26;
+    int32 reference_range_low_abnormal_level = 27;
+    int32 reference_range_low_moderate_abnormal_level = 28;
+    int32 reference_range_normal_level = 29;
+    int32 reference_range_high_moderate_abnormal_level = 30;
+    int32 reference_range_high_abnormal_level = 31;
+    string reference_range_low_abnormal_l1 = 32;
+    string reference_range_low_abnormal_l2 = 33;
+    string reference_range_low_abnormal_l3 = 34;
+    string reference_range_low_abnormal_l4 = 35;
+    string reference_range_low_abnormal_l5 = 36;
+    string reference_range_low_abnormal_l6 = 37;
+    string reference_range_low_moderate_abnormal_l1 = 38;
+    string reference_range_low_moderate_abnormal_l2 = 39;
+    string reference_range_low_moderate_abnormal_l3 = 40;
+    string reference_range_low_moderate_abnormal_l4 = 41;
+    string reference_range_low_moderate_abnormal_l5 = 42;
+    string reference_range_low_moderate_abnormal_l6 = 43;
+    string reference_range_normal_l1 = 44;
+    string reference_range_normal_l2 = 45;
+    string reference_range_normal_l3 = 46;
+    string reference_range_normal_l4 = 47;
+    string reference_range_normal_l5 = 48;
+    string reference_range_normal_l6 = 49;
+    string reference_range_high_moderate_abnormal_l1 = 50;
+    string reference_range_high_moderate_abnormal_l2 = 51;
+    string reference_range_high_moderate_abnormal_l3 = 52;
+    string reference_range_high_moderate_abnormal_l4 = 53;
+    string reference_range_high_moderate_abnormal_l5 = 54;
+    string reference_range_high_moderate_abnormal_l6 = 55;
+    string reference_range_high_abnormal_l1 = 56;
+    string reference_range_high_abnormal_l2 = 57;
+    string reference_range_high_abnormal_l3 = 58;
+    string reference_range_high_abnormal_l4 = 59;
+    string reference_range_high_abnormal_l5 = 60;
+    string reference_range_high_abnormal_l6 = 61;
+    string reference_range_low_abnormal_min = 62;
+    string reference_range_low_abnormal_max = 63;
+    string reference_range_low_moderate_abnormal_min = 64;
+    string reference_range_low_moderate_abnormal_max = 65;
+    string reference_range_normal_min = 66;
+    string reference_range_normal_max = 67;
+    string reference_range_high_moderate_abnormal_min = 68;
+    string reference_range_high_moderate_abnormal_max = 69;
+    string reference_range_high_abnormal_min = 70;
+    string reference_range_high_abnormal_max = 71;
+    string reference_range_high_critical_l1 = 72;
+    string reference_range_high_critical_l2 = 73;
+    string reference_range_high_critical_l3 = 74;
+    string reference_range_high_critical_l4 = 75;
+    string reference_range_high_critical_l5 = 76;
+    string reference_range_high_critical_l6 = 77;
+    int32 reference_range_high_critical_level = 78;
+    string reference_range_high_critical_min = 79;
+    string reference_range_high_critical_max = 80;
+    string reference_range_low_critical_l1 = 81;
+    string reference_range_low_critical_l2 = 82;
+    string reference_range_low_critical_l3 = 83;
+    string reference_range_low_critical_l4 = 84;
+    string reference_range_low_critical_l5 = 85;
+    string reference_range_low_critical_l6 = 86;
+    int32 reference_range_low_critical_level = 87;
+    string reference_range_low_critical_min = 88;
+    string reference_range_low_critical_max = 89;
+
+
+}
+
+message DetailedResultRespondInOutList{
+    repeated DetailedResultRespond In = 1;
+    repeated DetailedResultRespond All = 2;
+    string Error = 3;
+}
+message ResultRespondInOutLists{
+    repeated ResultRespondInOutListBatch result = 1;
+}
+message DetailedResultRespondInOutLists{
+    repeated DetailedResultRespondInOutListBatch result = 1;
+}
+message DetailedResultRespondInOutListBatch{
+    repeated DetailedResultRespond In = 1;
+    repeated DetailedResultRespond All = 2;
+    string sample_id = 3;
+    string test_id = 4;
+}
+
+message GetMasterlistIDReferenceRangeRequest{
+    string masterlistID = 1;
+}
+
+message GetMasterlistIDReferenceRangeResponse{
+    repeated CompleteReferenceRange Reference_Range = 1;
+}
+
+message CompleteReferenceRange{
+    int32 test_id = 1;
+    int32 reference_range_id = 2;
+    string reference_range_name = 3;
+    string reference_range_gender = 4;
+    string reference_range_age_start = 5;
+    string reference_range_age_end = 6;
+    int32 master_list_id = 7;
+    string reference_range_type = 8;
+    string reference_range_value_type = 9;
+    string reference_range_constant = 10;
+    string reference_range_value_min = 11;
+    string reference_range_value_max = 12;
+    string reference_range_description = 13;
+    string am_or_pm = 14;
+    string hormones = 15;
+    string effective_period_start = 16;
+    string effective_period_end = 17;
+    string unit_of_measure = 18;
+    string precision_digit = 19;
+    string reportable_range_min = 20;
+    string reportable_range_max = 21;
+    bool auto_approveable = 22;
+    string modified_by = 23;
+    string modified_time = 24;
+    bool isActive = 25;
+}
+
+message ReferenceRangeGroup{
+    int32 reference_range_group_id = 1;
+    string reference_range_group_name = 2;
+    string reference_range_unit = 3;
+    bool reference_range_is_official = 4;
+    int32 precision_digit = 5;
+    int32 test_id = 6;
+    int32 customer_id = 7;
+    int32 clinic_id = 8;
+    repeated ReferenceRange reference_range_contains = 9;
+}
+
+message ReferenceRange{
+    int32 reference_range_id = 1;
+    string reference_range_name = 2;
+    string reference_range_gender = 3;
+    string reference_range_age_start = 4;
+    string reference_range_age_end = 5;
+    int32 reference_range_type_id = 6;
+    string reference_range_value_min = 7;
+    string reference_range_value_max = 8;
+    string reference_range_description = 9;
+    int32 master_list_id = 10;
+}
+
+message ReferenceRangeGroupList{
+    repeated ReferenceRangeGroup ReferenceRange = 1;
+}
+
+message ReferenceRangeList{
+    repeated ReferenceRange ReferenceRange = 1;
+}
+
+message MasterID{
+    repeated string master_list_id = 1;
+}
+
+message PatientInfo{
+    string test_id = 1;
+    string sample_id = 2;
+    string result_value = 3;
+}
+
+message BarcodeInfo{
+    string test_id = 1;
+    string accession_id = 2;
+    string result_value = 3;
+}
+
+message ResultRespond{
+    int32 reference_range_id = 1;
+    int32 test_id = 2;
+    string reference_range_name = 3;
+    string reference_range_gender = 4;
+    string reference_range_age_start = 5;
+    string reference_range_age_end = 6;
+    int32 master_list_id = 7;
+    string reference_range_type = 8;
+    string reference_range_value_type = 9;
+    string reference_range_constant = 10;
+    string reference_range_value_min = 11;
+    string reference_range_value_max = 12;
+    string reference_range_description = 13;
+    string precision_digit = 16;
+    bool isActive = 17;
+    string modified_by = 18;
+    string modified_time = 19;
+    string unit_of_measure = 20;
+    string am_or_pm = 21;
+    string hormones = 22;
+    string effective_period_start = 23;
+    string effective_period_end = 24;
+    string reportable_range_min = 25;
+    string reportable_range_max = 26;
+}
+
+
+message ResultRespondList{
+    repeated ResultRespond ResultRespond = 1;
+}
+message ResultRespondInOutList{
+    repeated ResultRespond In = 1;
+    repeated ResultRespond Out = 2;
+    string Error = 3;
+}
+message ResultRespondInOutListBatch{
+    repeated ResultRespond In = 1;
+    repeated ResultRespond Out = 2;
+    string sample_id = 3;
+    string test_id = 4;
+    string result_value = 5;
+}

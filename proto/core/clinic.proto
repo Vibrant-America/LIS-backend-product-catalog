@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package lis;
+
+option go_package = "./;lis";
+
+import "customer.proto";
+
+service ClinicService{
+  rpc CreateClinic(CreateClinicRequest) returns (Clinic){}
+  rpc GetClinic (GetClinicRequest) returns (GetClinicResponse){}
+  rpc ListClinic(ListClinicRequest) returns (GetClinicResponse){}
+  rpc ListClinicCustomers(ListClinicCustomerRequest) returns (ListClinicCustomerResponse){}
+  rpc GetCustomerClinicNames(GetCustomerClinicNamesRequest) returns(GetCustomerClinicNamesResponse){}
+  rpc GetClinicsClinicAccountIDs(GetClinicsClinicAccountIDsRequest) returns(GetClinicResponse){}
+
+  rpc ListClinicCustomersByClinicID(ListClinicCustomersByClinicIDRequest) returns (ListClinicCustomerByIDResponse){}
+
+
+  //Version 0.7.3.7 
+  rpc GetClinicByID (ClinicID) returns (FullClinic){}
+  //Version 0.7.3.9
+  rpc UpdateClinicNPINumber(UpdateClinicNPINumberRequest) returns (GetClinicResponse){}
+  rpc EditClinicName(EditClinicNameRequest) returns(GetClinicResponse){}
+}
+
+message ListClinicCustomersByClinicIDRequest{
+  string clinic_id = 1;
+}
+
+message GetClinicsClinicAccountIDsRequest{
+  repeated string clinic_account_ids = 1;
+}
+
+message EditClinicNameRequest{
+  string clinic_id = 1;
+  string clinic_name = 2;
+}
+
+message UpdateClinicNPINumberRequest{
+  string clinic_id = 1;
+  string clinic_npi_number = 2;
+}
+
+message ListClinicRequest{
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+
+message GetClinicRequest{
+  string clinic_name = 1;
+}
+
+message CreateClinicRequest{
+  string clinic_name = 1;
+}
+message ListClinicResponse{
+  repeated ListClinicResponse response = 1;
+}
+
+message GetClinicResponse{
+  repeated FullClinic response = 1;
+}
+
+message FullClinic{
+  int32 clinic_id = 1;
+  string clinic_name = 2;
+  int32 user_id = 3;
+  string clinic_type = 4;
+  bool isActive = 5;
+  string clinic_npi_number = 6;
+  int32 clinic_account_id = 7;
+}
+
+
+message GetCustomerClinicNamesRequest{
+  string customer_id = 1;
+}
+message GetCustomerClinicNamesResponse{
+  ClinicNames response = 1;
+}
+
+message ClinicNames{
+  repeated ListClinicCustomerRequest clinics = 1;
+}
+
+message ListClinicCustomerRequest{
+  string clinic_name = 1;
+}
+
+message ListClinicCustomerResponse{
+  repeated ClinicCustomers clinic_customers = 1;
+}
+message ListClinicCustomerByIDResponse{
+   ClinicCustomers clinic_customers = 1;
+}
+
+message ClinicCustomers{
+  string clinic_name = 1;
+  repeated FullCustomer customers = 2;
+}
+message ClinicCustomerIds{
+  string customer_id = 1;
+}
+
+message ClinicID{
+    int32 clinic_id = 1;
+}
+message Clinic{
+    int32 clinic_id = 1;
+    string clinic_name = 2;
+}

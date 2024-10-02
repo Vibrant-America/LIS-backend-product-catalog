@@ -1,0 +1,69 @@
+syntax = "proto3";
+option go_package = "./;lis";
+
+package shipping; 
+
+service ShippingService {
+    rpc GetKitStatus (AccessionId) returns (KitStatus) {} 
+    rpc GetAccessionIdByPoNumber(PoNumber) returns (LinkedAccessionIdList) {}
+    rpc GetAccessionIdByTrackingId(TrackingId) returns (LinkedAccessionIdList) {}
+    rpc GetQuestionaireByAccessionId(AccessionId) returns (Questionaire) {}
+}
+
+message AccessionId { 
+    string accession_id = 1;
+}
+
+message LinkedAccessionIdList {
+    repeated string accession_id_list = 1;
+}
+
+message PoNumber {
+    int32 po_number = 1;
+}
+
+message TrackingId {
+    string tracking_id = 1;
+}
+
+message KitStatus { 
+    repeated SendOut send_out = 1;
+    ReturnFrom return_from = 2;
+}
+
+message SendOut {
+    int32 po_number = 1;
+    string po_create_time = 2;
+    string customer_type = 3;
+    repeated Packages packages = 4;
+}
+
+message Packages {
+    string tracking_number = 1;
+    string package_status = 2;
+    string url = 3;
+}
+
+message ReturnFrom {
+    repeated Kits kits = 1;
+}
+
+message Kits {
+    int32 po_number = 1;
+    string kit_name = 2;
+    string tracking_number = 3;
+    string kit_status = 4;
+}
+
+message Questionaire {
+    int32 sample_id = 1;
+    string first_day_last_menses = 2;
+    bool is_currently_pregnant = 3;
+    string current_menstrual_phase = 4;
+    string is_ovaries_removed = 5;
+    int32 patient_waist = 6;
+    bool currently_breastfeeding = 7;
+    string menstrual_cycles_type = 8;
+    bool is_hysterectomy = 9;
+    bool recently_postpartum = 10;
+}

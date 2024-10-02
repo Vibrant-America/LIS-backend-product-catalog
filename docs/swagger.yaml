@@ -1,0 +1,1632 @@
+basePath: /v1/productCatalog
+definitions:
+  bundle.BundleType:
+    enum:
+    - customer
+    - official
+    type: string
+    x-enum-varnames:
+    - BundleTypeCustomer
+    - BundleTypeOfficial
+  bundledetails.ItemType:
+    enum:
+    - Test
+    - Test
+    - Group
+    - Promotion
+    type: string
+    x-enum-varnames:
+    - DefaultItemType
+    - ItemTypeTest
+    - ItemTypeGroup
+    - ItemTypePromotion
+  ent.Bundle:
+    properties:
+      bundle_name:
+        description: BundleName holds the value of the "bundle_name" field.
+        type: string
+      bundle_type:
+        allOf:
+        - $ref: '#/definitions/bundle.BundleType'
+        description: BundleType holds the value of the "bundle_type" field.
+      comments:
+        description: Comments holds the value of the "comments" field.
+        type: string
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      created_by:
+        description: CreatedBy holds the value of the "created_by" field.
+        type: string
+      customer_id:
+        description: CustomerID holds the value of the "customer_id" field.
+        type: integer
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      display_content_info:
+        description: DisplayContentInfo holds the value of the "display_content_info"
+          field.
+        type: string
+      edges:
+        allOf:
+        - $ref: '#/definitions/ent.BundleEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the BundleQuery when eager-loading is set.
+      expire_time:
+        description: ExpireTime holds the value of the "expire_time" field.
+        type: string
+      id:
+        description: ID of the ent.
+        type: integer
+      isDBS:
+        description: IsDBS holds the value of the "isDBS" field.
+        type: boolean
+      old_order_type_id:
+        description: OldOrderTypeID holds the value of the "old_order_type_id" field.
+        type: integer
+      original_price:
+        description: OriginalPrice holds the value of the "original_price" field.
+        type: number
+      price:
+        description: Price holds the value of the "price" field.
+        type: number
+      start_time:
+        description: StartTime holds the value of the "start_time" field.
+        type: string
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+      updated_by:
+        description: UpdatedBy holds the value of the "updated_by" field.
+        type: string
+    type: object
+  ent.BundleDetails:
+    properties:
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      edges:
+        allOf:
+        - $ref: '#/definitions/ent.BundleDetailsEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the BundleDetailsQuery when eager-loading is set.
+      id:
+        description: ID of the ent.
+        type: integer
+      item_id:
+        description: ItemID holds the value of the "item_id" field.
+        type: integer
+      item_old_order_type_id:
+        description: ItemOldOrderTypeID holds the value of the "item_old_order_type_id"
+          field.
+        type: integer
+      item_type:
+        allOf:
+        - $ref: '#/definitions/bundledetails.ItemType'
+        description: ItemType holds the value of the "item_type" field.
+      old_order_type_id:
+        description: OldOrderTypeID holds the value of the "old_order_type_id" field.
+        type: integer
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+    type: object
+  ent.BundleDetailsEdges:
+    properties:
+      bundle:
+        allOf:
+        - $ref: '#/definitions/ent.Bundle'
+        description: Bundle holds the value of the bundle edge.
+    type: object
+  ent.BundleEdges:
+    properties:
+      bundle_details:
+        description: BundleDetails holds the value of the bundle_details edge.
+        items:
+          $ref: '#/definitions/ent.BundleDetails'
+        type: array
+    type: object
+  ent.Item:
+    properties:
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      description:
+        description: Description holds the value of the "description" field.
+        type: string
+      end_time:
+        description: EndTime holds the value of the "end_time" field.
+        type: string
+      id:
+        description: ID of the ent.
+        type: integer
+      is_active:
+        description: IsActive holds the value of the "is_active" field.
+        type: boolean
+      is_orderable:
+        description: |-
+          IsOrderable holds the value of the "is_orderable" field.
+          This field is to represent if test is directly orderable, if not, then you can only order it through add-ons
+        type: boolean
+      name:
+        description: Name holds the value of the "name" field.
+        type: string
+      notes:
+        description: Notes holds the value of the "notes" field.
+        type: string
+      order_type_id:
+        description: OrderTypeID holds the value of the "order_type_id" field.
+        type: integer
+      price:
+        description: Price holds the value of the "price" field.
+        type: number
+      start_time:
+        description: StartTime holds the value of the "start_time" field.
+        type: string
+      test_price_id:
+        description: TestPriceID holds the value of the "test_price_id" field.
+        type: integer
+      type:
+        allOf:
+        - $ref: '#/definitions/item.Type'
+        description: Type holds the value of the "type" field.
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+      user:
+        description: User holds the value of the "user" field.
+        type: string
+    type: object
+  ent.Promotion:
+    properties:
+      banner_url:
+        description: BannerURL holds the value of the "banner_url" field.
+        items:
+          type: string
+        type: array
+      comment:
+        description: Comment holds the value of the "comment" field.
+        type: string
+      coupon_code:
+        description: |-
+          CouponCode holds the value of the "coupon_code" field.
+          This is the coupon code that should trigger this promotion.
+        type: string
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      created_by:
+        description: CreatedBy holds the value of the "created_by" field.
+        type: string
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      discount_name:
+        description: DiscountName holds the value of the "discount_name" field.
+        type: string
+      edges:
+        allOf:
+        - $ref: '#/definitions/ent.PromotionEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the PromotionQuery when eager-loading is set.
+      expired_date:
+        description: ExpiredDate holds the value of the "expired_date" field.
+        type: string
+      group_quantity:
+        description: GroupQuantity holds the value of the "group_quantity" field.
+        type: integer
+      id:
+        description: ID of the ent.
+        type: integer
+      is_banner:
+        description: IsBanner holds the value of the "is_banner" field.
+        type: boolean
+      is_limited:
+        description: IsLimited holds the value of the "is_limited" field.
+        type: boolean
+      is_main_promotion:
+        description: IsMainPromotion holds the value of the "is_main_promotion" field.
+        type: boolean
+      max_quantity:
+        description: MaxQuantity holds the value of the "max_quantity" field.
+        type: integer
+      min_quantity:
+        description: MinQuantity holds the value of the "min_quantity" field.
+        type: integer
+      need_supplement:
+        description: NeedSupplement holds the value of the "need_supplement" field.
+        type: boolean
+      promotion_allowed_to_use:
+        description: PromotionAllowedToUse holds the value of the "promotion_allowed_to_use"
+          field.
+        type: integer
+      promotion_amount:
+        description: |-
+          PromotionAmount holds the value of the "promotion_amount" field.
+          depends on is_percent, it's either the rate of discount or the absolute amount that need to be discounted.
+        type: number
+      promotion_group_type:
+        allOf:
+        - $ref: '#/definitions/promotion.PromotionGroupType'
+        description: PromotionGroupType holds the value of the "promotion_group_type"
+          field.
+      promotion_type:
+        allOf:
+        - $ref: '#/definitions/promotion.PromotionType'
+        description: PromotionType holds the value of the "promotion_type" field.
+      required_amount:
+        description: |-
+          RequiredAmount holds the value of the "required_amount" field.
+          execess_percentage_off type must have this field set
+        type: number
+      start_date:
+        description: StartDate holds the value of the "start_date" field.
+        type: string
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+      updated_by:
+        description: UpdatedBy holds the value of the "updated_by" field.
+        type: string
+    type: object
+  ent.PromotionAllowed:
+    properties:
+      account_id:
+        description: AccountID holds the value of the "account_id" field.
+        type: integer
+      account_type:
+        allOf:
+        - $ref: '#/definitions/promotionallowed.AccountType'
+        description: AccountType holds the value of the "account_type" field.
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      edges:
+        allOf:
+        - $ref: '#/definitions/ent.PromotionAllowedEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the PromotionAllowedQuery when eager-loading is set.
+      id:
+        description: ID of the ent.
+        type: integer
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+    type: object
+  ent.PromotionAllowedEdges:
+    properties:
+      promotion:
+        allOf:
+        - $ref: '#/definitions/ent.Promotion'
+        description: Promotion holds the value of the promotion edge.
+    type: object
+  ent.PromotionEdges:
+    properties:
+      main_promotion:
+        allOf:
+        - $ref: '#/definitions/ent.Promotion'
+        description: MainPromotion holds the value of the main_promotion edge.
+      promotion_allowed:
+        description: PromotionAllowed holds the value of the promotion_allowed edge.
+        items:
+          $ref: '#/definitions/ent.PromotionAllowed'
+        type: array
+      promotion_groups:
+        description: PromotionGroups holds the value of the promotion_groups edge.
+        items:
+          $ref: '#/definitions/ent.PromotionGroups'
+        type: array
+      promotion_usage:
+        description: PromotionUsage holds the value of the promotion_usage edge.
+        items:
+          $ref: '#/definitions/ent.PromotionUsage'
+        type: array
+      supplement:
+        description: Supplement holds the value of the supplement edge.
+        items:
+          $ref: '#/definitions/ent.Promotion'
+        type: array
+    type: object
+  ent.PromotionGroups:
+    properties:
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      edges:
+        allOf:
+        - $ref: '#/definitions/ent.PromotionGroupsEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the PromotionGroupsQuery when eager-loading is set.
+      id:
+        description: ID of the ent.
+        type: integer
+      price_type:
+        allOf:
+        - $ref: '#/definitions/promotiongroups.PriceType'
+        description: PriceType holds the value of the "price_type" field.
+      price_type_id:
+        description: PriceTypeID holds the value of the "price_type_id" field.
+        type: integer
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+    type: object
+  ent.PromotionGroupsEdges:
+    properties:
+      promotion:
+        allOf:
+        - $ref: '#/definitions/ent.Promotion'
+        description: Promotion holds the value of the promotion edge.
+    type: object
+  ent.PromotionUsage:
+    properties:
+      account_id:
+        description: AccountID holds the value of the "account_id" field.
+        type: integer
+      account_type:
+        allOf:
+        - $ref: '#/definitions/promotionusage.AccountType'
+        description: AccountType holds the value of the "account_type" field.
+      created_at:
+        description: CreatedAt holds the value of the "created_at" field.
+        type: string
+      deleted_at:
+        description: DeletedAt holds the value of the "deleted_at" field.
+        type: string
+      edges:
+        allOf:
+        - $ref: '#/definitions/ent.PromotionUsageEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the PromotionUsageQuery when eager-loading is set.
+      id:
+        description: ID of the ent.
+        type: integer
+      updated_at:
+        description: UpdatedAt holds the value of the "updated_at" field.
+        type: string
+    type: object
+  ent.PromotionUsageEdges:
+    properties:
+      promotion:
+        allOf:
+        - $ref: '#/definitions/ent.Promotion'
+        description: Promotion holds the value of the promotion edge.
+    type: object
+  item.Type:
+    enum:
+    - Test
+    - Group
+    type: string
+    x-enum-varnames:
+    - TypeTest
+    - TypeGroup
+  model.Bundle:
+    properties:
+      bundle_name:
+        type: string
+      bundle_type:
+        type: string
+      comments:
+        type: string
+      created_by:
+        type: string
+      customer_id:
+        type: integer
+      display_content_info:
+        type: string
+      expire_time:
+        type: string
+      group_id:
+        type: integer
+      isDBS:
+        type: boolean
+      last_by:
+        type: string
+      old_order_type_id:
+        type: integer
+      original_price:
+        type: number
+      price:
+        type: number
+      start_time:
+        type: string
+    type: object
+  model.Promotion:
+    properties:
+      banner_url:
+        items:
+          type: string
+        type: array
+      comment:
+        type: string
+      coupon_code:
+        type: string
+      created_by:
+        type: string
+      discount_name:
+        type: string
+      edges:
+        $ref: '#/definitions/ent.PromotionEdges'
+      expired_date:
+        type: string
+      group_quantity:
+        type: integer
+      is_banner:
+        type: boolean
+      is_limited:
+        type: boolean
+      is_main_promotion:
+        type: boolean
+      max_quantity:
+        type: integer
+      min_quantity:
+        type: integer
+      need_supplement:
+        type: boolean
+      promotion_allowed_to_use:
+        type: integer
+      promotion_amount:
+        type: number
+      promotion_group_type:
+        $ref: '#/definitions/promotion.PromotionGroupType'
+      promotion_type:
+        $ref: '#/definitions/promotion.PromotionType'
+      required_amount:
+        type: number
+      start_date:
+        type: string
+      updated_by:
+        type: string
+    type: object
+  model.PromotionAllowed:
+    properties:
+      account_id:
+        type: integer
+      account_type:
+        $ref: '#/definitions/promotionallowed.AccountType'
+      edges:
+        $ref: '#/definitions/ent.PromotionAllowedEdges'
+      id:
+        type: integer
+    type: object
+  model.PromotionGroups:
+    properties:
+      edges:
+        $ref: '#/definitions/ent.PromotionGroupsEdges'
+      id:
+        type: integer
+      price_type:
+        $ref: '#/definitions/promotiongroups.PriceType'
+      price_type_id:
+        type: integer
+    type: object
+  model.PromotionUsage:
+    properties:
+      account_id:
+        type: integer
+      account_type:
+        $ref: '#/definitions/promotionusage.AccountType'
+      edges:
+        $ref: '#/definitions/ent.PromotionUsageEdges'
+      id:
+        type: integer
+    type: object
+  model.UpdateItem:
+    properties:
+      description:
+        type: string
+      end_time:
+        type: string
+      is_orderable:
+        type: boolean
+      name:
+        type: string
+      notes:
+        type: string
+      price:
+        type: number
+      start_time:
+        type: string
+      test_price_id:
+        type: integer
+      user:
+        type: string
+    type: object
+  promotion.PromotionGroupType:
+    enum:
+    - no_limit
+    - x_choose_y
+    - exact_match
+    - no_limit
+    type: string
+    x-enum-varnames:
+    - DefaultPromotionGroupType
+    - PromotionGroupTypeXChooseY
+    - PromotionGroupTypeExactMatch
+    - PromotionGroupTypeNoLimit
+  promotion.PromotionType:
+    enum:
+    - percentage_off
+    - excess_percentage_off
+    - absolute_off
+    - final_price
+    type: string
+    x-enum-varnames:
+    - PromotionTypePercentageOff
+    - PromotionTypeExcessPercentageOff
+    - PromotionTypeAbsoluteOff
+    - PromotionTypeFinalPrice
+  promotionallowed.AccountType:
+    enum:
+    - patient
+    - customer
+    - clinic
+    - sales
+    - NPI
+    type: string
+    x-enum-varnames:
+    - AccountTypePatient
+    - AccountTypeCustomer
+    - AccountTypeClinic
+    - AccountTypeSales
+    - AccountTypeNPI
+  promotiongroups.PriceType:
+    enum:
+    - test_price
+    - test_price
+    - bundle
+    - promotion
+    type: string
+    x-enum-varnames:
+    - DefaultPriceType
+    - PriceTypeTestPrice
+    - PriceTypeBundle
+    - PriceTypePromotion
+  promotionusage.AccountType:
+    enum:
+    - patient
+    - customer
+    - clinic
+    - sales
+    - NPI
+    type: string
+    x-enum-varnames:
+    - AccountTypePatient
+    - AccountTypeCustomer
+    - AccountTypeClinic
+    - AccountTypeSales
+    - AccountTypeNPI
+host: 192.168.10.212
+info:
+  contact:
+    name: LIS Support
+  description: 'This Billing ProductCatalog service consists of four parts: Bundle, Item
+    price and Promotion. For details https://vibrantamerica.atlassian.net/wiki/spaces/LIS/pages/328695927/Billing+Service'
+  termsOfService: http://swagger.io/terms/
+  title: LIS Billing ProductCatalog Swagger API
+  version: "1.0"
+paths:
+  /bundle/createBundle:
+    post:
+      consumes:
+      - application/json
+      description: create a bundle
+      parameters:
+      - description: Create bundle body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.Bundle'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create a bundle
+      tags:
+      - bundle
+  /bundle/createBundleDetails:
+    post:
+      consumes:
+      - application/json
+      description: create a bundleDetails
+      parameters:
+      - description: Create bundleDetail body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ent.BundleDetails'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create a bundleDetails
+      tags:
+      - bundle
+  /bundle/deleteBundle/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a bundle by id
+      parameters:
+      - description: bundle id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: delete a bundle by id
+      tags:
+      - bundle
+  /bundle/deleteBundleDetails/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a bundleDetails by id
+      parameters:
+      - description: bundleDetails id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: delete a bundleDetails by id
+      tags:
+      - bundle
+  /bundle/queryBundle/{id}:
+    get:
+      consumes:
+      - application/json
+      description: query bundle by id
+      parameters:
+      - description: bundle id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Bundle'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query bundle by id
+      tags:
+      - bundle
+  /bundle/queryBundleByDate/{date}:
+    get:
+      consumes:
+      - application/json
+      description: query bundles by date where the bundles are valid on the given
+        date
+      parameters:
+      - description: date format 2006-01-02
+        in: path
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Bundle'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query bundles by date
+      tags:
+      - bundle
+  /bundle/queryBundleByTimeSpan:
+    get:
+      consumes:
+      - application/json
+      description: query bundles by time span where the bundles are valid on the given
+        period
+      parameters:
+      - description: start date, format 2006-01-02
+        in: query
+        name: start
+        required: true
+        type: string
+      - description: end date, format 2006-01-02
+        in: query
+        name: end
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Bundle'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query bundles by time span
+      tags:
+      - bundle
+  /bundle/queryBundleDetails/{id}:
+    get:
+      consumes:
+      - application/json
+      description: query bundleDetails by id
+      parameters:
+      - description: bundleDetails id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.BundleDetails'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query bundleDetails by id
+      tags:
+      - bundle
+  /bundle/updateBundle:
+    post:
+      consumes:
+      - application/json
+      description: update a bundle; zero values such as 0, "", false and null are
+        not allowed
+      parameters:
+      - description: update bundle body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Bundle'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Bundle'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: update a bundle
+      tags:
+      - bundle
+  /bundle/updateBundleDetails:
+    post:
+      consumes:
+      - application/json
+      description: update a bundleDetails; zero values are not allowed such as 0,
+        false, null and ""
+      parameters:
+      - description: Update bundleDetail body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ent.BundleDetails'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: update a bundleDetails
+      tags:
+      - bundle
+  /item/createItem:
+    post:
+      consumes:
+      - application/json
+      description: create an item
+      parameters:
+      - description: create item body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Item'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create an item
+      tags:
+      - item
+  /item/deleteItem/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete an item by id
+      parameters:
+      - description: item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: delete an item by id
+      tags:
+      - item
+  /item/getItemByDate/{date}:
+    get:
+      consumes:
+      - application/json
+      description: get an item by date
+      parameters:
+      - description: 'item valid date, format: 2006-01-02'
+        in: path
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Item'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: get an item by date
+      tags:
+      - item
+  /item/getItemByID/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get an item by id
+      parameters:
+      - description: item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Item'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: get an item by id
+      tags:
+      - item
+  /item/getItemByTestPriceID/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get an item by test_price id
+      parameters:
+      - description: item test_price id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Item'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: get an item by test_price id
+      tags:
+      - item
+  /item/getItemByTimeSpan:
+    get:
+      consumes:
+      - application/json
+      description: get an item by time span
+      parameters:
+      - description: 'item valid start date, format: 2006-01-02'
+        in: path
+        name: start
+        required: true
+        type: string
+      - description: 'item valid end date, format: 2006-01-02'
+        in: path
+        name: end
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Item'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: get an item by time span
+      tags:
+      - item
+  /item/updateItem:
+    post:
+      consumes:
+      - application/json
+      description: update an item
+      parameters:
+      - description: update item body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateItem'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: update an item
+      tags:
+      - item
+  /promotion/createPromotion:
+    post:
+      consumes:
+      - application/json
+      description: create a promotion
+      parameters:
+      - description: Create promotion body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.Promotion'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create a promotion
+      tags:
+      - promotion
+  /promotion/createPromotionAllowed:
+    post:
+      consumes:
+      - application/json
+      description: create a promotion allowed
+      parameters:
+      - description: Create promotion allowed body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.PromotionAllowed'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create a promotion allowed
+      tags:
+      - promotion
+  /promotion/createPromotionGroups:
+    post:
+      consumes:
+      - application/json
+      description: create a promotionGroups
+      parameters:
+      - description: Create promotionGroups body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.PromotionGroups'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create a promotionGroups
+      tags:
+      - promotion
+  /promotion/createPromotionUsage:
+    post:
+      consumes:
+      - application/json
+      description: create a promotionUsage
+      parameters:
+      - description: Create promotionUsage body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.PromotionUsage'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: create a promotionUsage
+      tags:
+      - promotion
+  /promotion/deletePromotion/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a promotion by id
+      parameters:
+      - description: promotion id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: delete a promotion by id
+      tags:
+      - promotion
+  /promotion/deletePromotionAllowed/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a promotionAllowed by id
+      parameters:
+      - description: promotionAllowed id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: delete a promotionAllowed by id
+      tags:
+      - promotion
+  /promotion/deletePromotionGroups/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a promotionGroups by id
+      parameters:
+      - description: promotionGroups id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: delete a promotionGroups by id
+      tags:
+      - promotion
+  /promotion/queryPromotion/{account_id}:
+    get:
+      consumes:
+      - application/json
+      description: query promotion eligible account id
+      parameters:
+      - description: account id
+        in: path
+        name: account_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Promotion'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query promotion by eligible account id
+      tags:
+      - promotion
+  /promotion/queryPromotion/{id}:
+    get:
+      consumes:
+      - application/json
+      description: query promotion by id
+      parameters:
+      - description: promotion id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Promotion'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query promotion by id
+      tags:
+      - promotion
+  /promotion/queryPromotionByDate/{date}:
+    get:
+      consumes:
+      - application/json
+      description: query promotions by date where the promotions are valid on the
+        given date
+      parameters:
+      - description: date format 2006-01-02
+        in: path
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Promotion'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query promotions by date
+      tags:
+      - promotion
+  /promotion/queryPromotionByTimeSpan:
+    get:
+      consumes:
+      - application/json
+      description: query promotions by time span where the promotions are valid on
+        the given period
+      parameters:
+      - description: start date, format 2006-01-02
+        in: query
+        name: start
+        required: true
+        type: string
+      - description: end date, format 2006-01-02
+        in: query
+        name: end
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Promotion'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: query promotions by time span
+      tags:
+      - promotion
+  /promotion/updatePromotion:
+    post:
+      consumes:
+      - application/json
+      description: update a promotion; zero values such as 0, "", false and null are
+        not allowed
+      parameters:
+      - description: update promotion body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Promotion'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Promotion'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: update a promotion
+      tags:
+      - promotion
+schemes:
+- http
+swagger: "2.0"

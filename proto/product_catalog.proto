@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package productCatalog;
+
+option go_package = "./proto;productCatalog";
+
+import "proto/tax.proto";
+
+service ProductCatalogService {
+    // tax calculation
+    rpc CalculateTax(CalculateTaxRequest) returns(CalculateTaxResponse) {}
+}
+
+

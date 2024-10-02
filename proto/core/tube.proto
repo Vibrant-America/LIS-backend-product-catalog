@@ -1,0 +1,46 @@
+syntax = "proto3";
+option go_package = "./;lis";
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
+package lis;
+
+service TubeService{
+  rpc GetTube (TubeID) returns (Tube){}
+  rpc GetTubeTests(TubeID) returns (TubeTests) {}
+}
+
+message TubeTests{
+  repeated TubeSingleTest tests = 1;
+}
+
+message TubeSingleTest{
+  int32 test_id = 1;
+  string test_names = 2;
+  string test_codes = 3;
+  string test_instrument = 4;
+  string test_type = 5;
+  string test_assay_name = 6;
+  string test_duplicate_assay_name = 7;
+  string test_group_name = 8;
+}
+
+message TubeID{
+    string tube_id = 1;
+}
+message Tube{
+    string tube_id = 1;
+    int32 sample_id = 2;
+    string tube_storage = 3;
+    string tube_receive_time = 4;
+    string tube_collection_time = 5;
+    int32 tube_stability = 6;
+    bool isActive = 7;
+    int32 turnaround_time = 8;
+    repeated TubeType tube_types = 9;
+}
+
+message TubeType{
+  string tube_type = 1;
+  string tube_type_symbol = 2;
+}
+

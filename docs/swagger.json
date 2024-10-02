@@ -1,0 +1,2404 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This Billing ProductCatalog service consists of four parts: Bundle, Item price and Promotion. For details https://vibrantamerica.atlassian.net/wiki/spaces/LIS/pages/328695927/Billing+Service",
+        "title": "LIS Billing ProductCatalog Swagger API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "LIS Support"
+        },
+        "version": "1.0"
+    },
+    "host": "192.168.10.212",
+    "basePath": "/v1/productCatalog",
+    "paths": {
+        "/bundle/createBundle": {
+            "post": {
+                "description": "create a bundle",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "create a bundle",
+                "parameters": [
+                    {
+                        "description": "Create bundle body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Bundle"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/createBundleDetails": {
+            "post": {
+                "description": "create a bundleDetails",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "create a bundleDetails",
+                "parameters": [
+                    {
+                        "description": "Create bundleDetail body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.BundleDetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/deleteBundle/{id}": {
+            "delete": {
+                "description": "delete a bundle by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "delete a bundle by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "bundle id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/deleteBundleDetails/{id}": {
+            "delete": {
+                "description": "delete a bundleDetails by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "delete a bundleDetails by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "bundleDetails id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/queryBundle/{id}": {
+            "get": {
+                "description": "query bundle by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "query bundle by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "bundle id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Bundle"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/queryBundleByDate/{date}": {
+            "get": {
+                "description": "query bundles by date where the bundles are valid on the given date",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "query bundles by date",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "date format 2006-01-02",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Bundle"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/queryBundleByTimeSpan": {
+            "get": {
+                "description": "query bundles by time span where the bundles are valid on the given period",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "query bundles by time span",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "start date, format 2006-01-02",
+                        "name": "start",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "end date, format 2006-01-02",
+                        "name": "end",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Bundle"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/queryBundleDetails/{id}": {
+            "get": {
+                "description": "query bundleDetails by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "query bundleDetails by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "bundleDetails id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.BundleDetails"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/updateBundle": {
+            "post": {
+                "description": "update a bundle; zero values such as 0, \"\", false and null are not allowed",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "update a bundle",
+                "parameters": [
+                    {
+                        "description": "update bundle body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.Bundle"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Bundle"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bundle/updateBundleDetails": {
+            "post": {
+                "description": "update a bundleDetails; zero values are not allowed such as 0, false, null and \"\"",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bundle"
+                ],
+                "summary": "update a bundleDetails",
+                "parameters": [
+                    {
+                        "description": "Update bundleDetail body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.BundleDetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/createItem": {
+            "post": {
+                "description": "create an item",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "create an item",
+                "parameters": [
+                    {
+                        "description": "create item body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.Item"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/deleteItem/{id}": {
+            "delete": {
+                "description": "delete an item by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "delete an item by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/getItemByDate/{date}": {
+            "get": {
+                "description": "get an item by date",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "get an item by date",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "item valid date, format: 2006-01-02",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Item"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/getItemByID/{id}": {
+            "get": {
+                "description": "get an item by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "get an item by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Item"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/getItemByTestPriceID/{id}": {
+            "get": {
+                "description": "get an item by test_price id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "get an item by test_price id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "item test_price id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Item"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/getItemByTimeSpan": {
+            "get": {
+                "description": "get an item by time span",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "get an item by time span",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "item valid start date, format: 2006-01-02",
+                        "name": "start",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "item valid end date, format: 2006-01-02",
+                        "name": "end",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Item"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/item/updateItem": {
+            "post": {
+                "description": "update an item",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "item"
+                ],
+                "summary": "update an item",
+                "parameters": [
+                    {
+                        "description": "update item body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UpdateItem"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/createPromotion": {
+            "post": {
+                "description": "create a promotion",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "create a promotion",
+                "parameters": [
+                    {
+                        "description": "Create promotion body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Promotion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/createPromotionAllowed": {
+            "post": {
+                "description": "create a promotion allowed",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "create a promotion allowed",
+                "parameters": [
+                    {
+                        "description": "Create promotion allowed body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PromotionAllowed"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/createPromotionGroups": {
+            "post": {
+                "description": "create a promotionGroups",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "create a promotionGroups",
+                "parameters": [
+                    {
+                        "description": "Create promotionGroups body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PromotionGroups"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/createPromotionUsage": {
+            "post": {
+                "description": "create a promotionUsage",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "create a promotionUsage",
+                "parameters": [
+                    {
+                        "description": "Create promotionUsage body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PromotionUsage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/deletePromotion/{id}": {
+            "delete": {
+                "description": "delete a promotion by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "delete a promotion by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "promotion id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/deletePromotionAllowed/{id}": {
+            "delete": {
+                "description": "delete a promotionAllowed by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "delete a promotionAllowed by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "promotionAllowed id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/deletePromotionGroups/{id}": {
+            "delete": {
+                "description": "delete a promotionGroups by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "delete a promotionGroups by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "promotionGroups id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/queryPromotion/{account_id}": {
+            "get": {
+                "description": "query promotion eligible account id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "query promotion by eligible account id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "account id",
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/queryPromotion/{id}": {
+            "get": {
+                "description": "query promotion by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "query promotion by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "promotion id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/queryPromotionByDate/{date}": {
+            "get": {
+                "description": "query promotions by date where the promotions are valid on the given date",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "query promotions by date",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "date format 2006-01-02",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Promotion"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/queryPromotionByTimeSpan": {
+            "get": {
+                "description": "query promotions by time span where the promotions are valid on the given period",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "query promotions by time span",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "start date, format 2006-01-02",
+                        "name": "start",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "end date, format 2006-01-02",
+                        "name": "end",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Promotion"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion/updatePromotion": {
+            "post": {
+                "description": "update a promotion; zero values such as 0, \"\", false and null are not allowed",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "update a promotion",
+                "parameters": [
+                    {
+                        "description": "update promotion body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "bundle.BundleType": {
+            "type": "string",
+            "enum": [
+                "customer",
+                "official"
+            ],
+            "x-enum-varnames": [
+                "BundleTypeCustomer",
+                "BundleTypeOfficial"
+            ]
+        },
+        "bundledetails.ItemType": {
+            "type": "string",
+            "enum": [
+                "Test",
+                "Test",
+                "Group",
+                "Promotion"
+            ],
+            "x-enum-varnames": [
+                "DefaultItemType",
+                "ItemTypeTest",
+                "ItemTypeGroup",
+                "ItemTypePromotion"
+            ]
+        },
+        "ent.Bundle": {
+            "type": "object",
+            "properties": {
+                "bundle_name": {
+                    "description": "BundleName holds the value of the \"bundle_name\" field.",
+                    "type": "string"
+                },
+                "bundle_type": {
+                    "description": "BundleType holds the value of the \"bundle_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/bundle.BundleType"
+                        }
+                    ]
+                },
+                "comments": {
+                    "description": "Comments holds the value of the \"comments\" field.",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "CreatedBy holds the value of the \"created_by\" field.",
+                    "type": "string"
+                },
+                "customer_id": {
+                    "description": "CustomerID holds the value of the \"customer_id\" field.",
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "display_content_info": {
+                    "description": "DisplayContentInfo holds the value of the \"display_content_info\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the BundleQuery when eager-loading is set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.BundleEdges"
+                        }
+                    ]
+                },
+                "expire_time": {
+                    "description": "ExpireTime holds the value of the \"expire_time\" field.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "isDBS": {
+                    "description": "IsDBS holds the value of the \"isDBS\" field.",
+                    "type": "boolean"
+                },
+                "old_order_type_id": {
+                    "description": "OldOrderTypeID holds the value of the \"old_order_type_id\" field.",
+                    "type": "integer"
+                },
+                "original_price": {
+                    "description": "OriginalPrice holds the value of the \"original_price\" field.",
+                    "type": "number"
+                },
+                "price": {
+                    "description": "Price holds the value of the \"price\" field.",
+                    "type": "number"
+                },
+                "start_time": {
+                    "description": "StartTime holds the value of the \"start_time\" field.",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                },
+                "updated_by": {
+                    "description": "UpdatedBy holds the value of the \"updated_by\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.BundleDetails": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the BundleDetailsQuery when eager-loading is set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.BundleDetailsEdges"
+                        }
+                    ]
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "item_id": {
+                    "description": "ItemID holds the value of the \"item_id\" field.",
+                    "type": "integer"
+                },
+                "item_old_order_type_id": {
+                    "description": "ItemOldOrderTypeID holds the value of the \"item_old_order_type_id\" field.",
+                    "type": "integer"
+                },
+                "item_type": {
+                    "description": "ItemType holds the value of the \"item_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/bundledetails.ItemType"
+                        }
+                    ]
+                },
+                "old_order_type_id": {
+                    "description": "OldOrderTypeID holds the value of the \"old_order_type_id\" field.",
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.BundleDetailsEdges": {
+            "type": "object",
+            "properties": {
+                "bundle": {
+                    "description": "Bundle holds the value of the bundle edge.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.Bundle"
+                        }
+                    ]
+                }
+            }
+        },
+        "ent.BundleEdges": {
+            "type": "object",
+            "properties": {
+                "bundle_details": {
+                    "description": "BundleDetails holds the value of the bundle_details edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.BundleDetails"
+                    }
+                }
+            }
+        },
+        "ent.Item": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description holds the value of the \"description\" field.",
+                    "type": "string"
+                },
+                "end_time": {
+                    "description": "EndTime holds the value of the \"end_time\" field.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "is_active": {
+                    "description": "IsActive holds the value of the \"is_active\" field.",
+                    "type": "boolean"
+                },
+                "is_orderable": {
+                    "description": "IsOrderable holds the value of the \"is_orderable\" field.\nThis field is to represent if test is directly orderable, if not, then you can only order it through add-ons",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "Name holds the value of the \"name\" field.",
+                    "type": "string"
+                },
+                "notes": {
+                    "description": "Notes holds the value of the \"notes\" field.",
+                    "type": "string"
+                },
+                "order_type_id": {
+                    "description": "OrderTypeID holds the value of the \"order_type_id\" field.",
+                    "type": "integer"
+                },
+                "price": {
+                    "description": "Price holds the value of the \"price\" field.",
+                    "type": "number"
+                },
+                "start_time": {
+                    "description": "StartTime holds the value of the \"start_time\" field.",
+                    "type": "string"
+                },
+                "test_price_id": {
+                    "description": "TestPriceID holds the value of the \"test_price_id\" field.",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "Type holds the value of the \"type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/item.Type"
+                        }
+                    ]
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                },
+                "user": {
+                    "description": "User holds the value of the \"user\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.Promotion": {
+            "type": "object",
+            "properties": {
+                "banner_url": {
+                    "description": "BannerURL holds the value of the \"banner_url\" field.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "comment": {
+                    "description": "Comment holds the value of the \"comment\" field.",
+                    "type": "string"
+                },
+                "coupon_code": {
+                    "description": "CouponCode holds the value of the \"coupon_code\" field.\nThis is the coupon code that should trigger this promotion.",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "created_by": {
+                    "description": "CreatedBy holds the value of the \"created_by\" field.",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "discount_name": {
+                    "description": "DiscountName holds the value of the \"discount_name\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the PromotionQuery when eager-loading is set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.PromotionEdges"
+                        }
+                    ]
+                },
+                "expired_date": {
+                    "description": "ExpiredDate holds the value of the \"expired_date\" field.",
+                    "type": "string"
+                },
+                "group_quantity": {
+                    "description": "GroupQuantity holds the value of the \"group_quantity\" field.",
+                    "type": "integer"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "is_banner": {
+                    "description": "IsBanner holds the value of the \"is_banner\" field.",
+                    "type": "boolean"
+                },
+                "is_limited": {
+                    "description": "IsLimited holds the value of the \"is_limited\" field.",
+                    "type": "boolean"
+                },
+                "is_main_promotion": {
+                    "description": "IsMainPromotion holds the value of the \"is_main_promotion\" field.",
+                    "type": "boolean"
+                },
+                "max_quantity": {
+                    "description": "MaxQuantity holds the value of the \"max_quantity\" field.",
+                    "type": "integer"
+                },
+                "min_quantity": {
+                    "description": "MinQuantity holds the value of the \"min_quantity\" field.",
+                    "type": "integer"
+                },
+                "need_supplement": {
+                    "description": "NeedSupplement holds the value of the \"need_supplement\" field.",
+                    "type": "boolean"
+                },
+                "promotion_allowed_to_use": {
+                    "description": "PromotionAllowedToUse holds the value of the \"promotion_allowed_to_use\" field.",
+                    "type": "integer"
+                },
+                "promotion_amount": {
+                    "description": "PromotionAmount holds the value of the \"promotion_amount\" field.\ndepends on is_percent, it's either the rate of discount or the absolute amount that need to be discounted.",
+                    "type": "number"
+                },
+                "promotion_group_type": {
+                    "description": "PromotionGroupType holds the value of the \"promotion_group_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/promotion.PromotionGroupType"
+                        }
+                    ]
+                },
+                "promotion_type": {
+                    "description": "PromotionType holds the value of the \"promotion_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/promotion.PromotionType"
+                        }
+                    ]
+                },
+                "required_amount": {
+                    "description": "RequiredAmount holds the value of the \"required_amount\" field.\nexecess_percentage_off type must have this field set",
+                    "type": "number"
+                },
+                "start_date": {
+                    "description": "StartDate holds the value of the \"start_date\" field.",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                },
+                "updated_by": {
+                    "description": "UpdatedBy holds the value of the \"updated_by\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.PromotionAllowed": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "description": "AccountID holds the value of the \"account_id\" field.",
+                    "type": "integer"
+                },
+                "account_type": {
+                    "description": "AccountType holds the value of the \"account_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/promotionallowed.AccountType"
+                        }
+                    ]
+                },
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the PromotionAllowedQuery when eager-loading is set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.PromotionAllowedEdges"
+                        }
+                    ]
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.PromotionAllowedEdges": {
+            "type": "object",
+            "properties": {
+                "promotion": {
+                    "description": "Promotion holds the value of the promotion edge.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    ]
+                }
+            }
+        },
+        "ent.PromotionEdges": {
+            "type": "object",
+            "properties": {
+                "main_promotion": {
+                    "description": "MainPromotion holds the value of the main_promotion edge.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    ]
+                },
+                "promotion_allowed": {
+                    "description": "PromotionAllowed holds the value of the promotion_allowed edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.PromotionAllowed"
+                    }
+                },
+                "promotion_groups": {
+                    "description": "PromotionGroups holds the value of the promotion_groups edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.PromotionGroups"
+                    }
+                },
+                "promotion_usage": {
+                    "description": "PromotionUsage holds the value of the promotion_usage edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.PromotionUsage"
+                    }
+                },
+                "supplement": {
+                    "description": "Supplement holds the value of the supplement edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.Promotion"
+                    }
+                }
+            }
+        },
+        "ent.PromotionGroups": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the PromotionGroupsQuery when eager-loading is set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.PromotionGroupsEdges"
+                        }
+                    ]
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "price_type": {
+                    "description": "PriceType holds the value of the \"price_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/promotiongroups.PriceType"
+                        }
+                    ]
+                },
+                "price_type_id": {
+                    "description": "PriceTypeID holds the value of the \"price_type_id\" field.",
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.PromotionGroupsEdges": {
+            "type": "object",
+            "properties": {
+                "promotion": {
+                    "description": "Promotion holds the value of the promotion edge.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    ]
+                }
+            }
+        },
+        "ent.PromotionUsage": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "description": "AccountID holds the value of the \"account_id\" field.",
+                    "type": "integer"
+                },
+                "account_type": {
+                    "description": "AccountType holds the value of the \"account_type\" field.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/promotionusage.AccountType"
+                        }
+                    ]
+                },
+                "created_at": {
+                    "description": "CreatedAt holds the value of the \"created_at\" field.",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "DeletedAt holds the value of the \"deleted_at\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the PromotionUsageQuery when eager-loading is set.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.PromotionUsageEdges"
+                        }
+                    ]
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "description": "UpdatedAt holds the value of the \"updated_at\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.PromotionUsageEdges": {
+            "type": "object",
+            "properties": {
+                "promotion": {
+                    "description": "Promotion holds the value of the promotion edge.",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ent.Promotion"
+                        }
+                    ]
+                }
+            }
+        },
+        "item.Type": {
+            "type": "string",
+            "enum": [
+                "Test",
+                "Group"
+            ],
+            "x-enum-varnames": [
+                "TypeTest",
+                "TypeGroup"
+            ]
+        },
+        "model.Bundle": {
+            "type": "object",
+            "properties": {
+                "bundle_name": {
+                    "type": "string"
+                },
+                "bundle_type": {
+                    "type": "string"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "customer_id": {
+                    "type": "integer"
+                },
+                "display_content_info": {
+                    "type": "string"
+                },
+                "expire_time": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "integer"
+                },
+                "isDBS": {
+                    "type": "boolean"
+                },
+                "last_by": {
+                    "type": "string"
+                },
+                "old_order_type_id": {
+                    "type": "integer"
+                },
+                "original_price": {
+                    "type": "number"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "start_time": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Promotion": {
+            "type": "object",
+            "properties": {
+                "banner_url": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "coupon_code": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "discount_name": {
+                    "type": "string"
+                },
+                "edges": {
+                    "$ref": "#/definitions/ent.PromotionEdges"
+                },
+                "expired_date": {
+                    "type": "string"
+                },
+                "group_quantity": {
+                    "type": "integer"
+                },
+                "is_banner": {
+                    "type": "boolean"
+                },
+                "is_limited": {
+                    "type": "boolean"
+                },
+                "is_main_promotion": {
+                    "type": "boolean"
+                },
+                "max_quantity": {
+                    "type": "integer"
+                },
+                "min_quantity": {
+                    "type": "integer"
+                },
+                "need_supplement": {
+                    "type": "boolean"
+                },
+                "promotion_allowed_to_use": {
+                    "type": "integer"
+                },
+                "promotion_amount": {
+                    "type": "number"
+                },
+                "promotion_group_type": {
+                    "$ref": "#/definitions/promotion.PromotionGroupType"
+                },
+                "promotion_type": {
+                    "$ref": "#/definitions/promotion.PromotionType"
+                },
+                "required_amount": {
+                    "type": "number"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.PromotionAllowed": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "integer"
+                },
+                "account_type": {
+                    "$ref": "#/definitions/promotionallowed.AccountType"
+                },
+                "edges": {
+                    "$ref": "#/definitions/ent.PromotionAllowedEdges"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.PromotionGroups": {
+            "type": "object",
+            "properties": {
+                "edges": {
+                    "$ref": "#/definitions/ent.PromotionGroupsEdges"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "price_type": {
+                    "$ref": "#/definitions/promotiongroups.PriceType"
+                },
+                "price_type_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.PromotionUsage": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "integer"
+                },
+                "account_type": {
+                    "$ref": "#/definitions/promotionusage.AccountType"
+                },
+                "edges": {
+                    "$ref": "#/definitions/ent.PromotionUsageEdges"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.UpdateItem": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "is_orderable": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notes": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "test_price_id": {
+                    "type": "integer"
+                },
+                "user": {
+                    "type": "string"
+                }
+            }
+        },
+        "promotion.PromotionGroupType": {
+            "type": "string",
+            "enum": [
+                "no_limit",
+                "x_choose_y",
+                "exact_match",
+                "no_limit"
+            ],
+            "x-enum-varnames": [
+                "DefaultPromotionGroupType",
+                "PromotionGroupTypeXChooseY",
+                "PromotionGroupTypeExactMatch",
+                "PromotionGroupTypeNoLimit"
+            ]
+        },
+        "promotion.PromotionType": {
+            "type": "string",
+            "enum": [
+                "percentage_off",
+                "excess_percentage_off",
+                "absolute_off",
+                "final_price"
+            ],
+            "x-enum-varnames": [
+                "PromotionTypePercentageOff",
+                "PromotionTypeExcessPercentageOff",
+                "PromotionTypeAbsoluteOff",
+                "PromotionTypeFinalPrice"
+            ]
+        },
+        "promotionallowed.AccountType": {
+            "type": "string",
+            "enum": [
+                "patient",
+                "customer",
+                "clinic",
+                "sales",
+                "NPI"
+            ],
+            "x-enum-varnames": [
+                "AccountTypePatient",
+                "AccountTypeCustomer",
+                "AccountTypeClinic",
+                "AccountTypeSales",
+                "AccountTypeNPI"
+            ]
+        },
+        "promotiongroups.PriceType": {
+            "type": "string",
+            "enum": [
+                "test_price",
+                "test_price",
+                "bundle",
+                "promotion"
+            ],
+            "x-enum-varnames": [
+                "DefaultPriceType",
+                "PriceTypeTestPrice",
+                "PriceTypeBundle",
+                "PriceTypePromotion"
+            ]
+        },
+        "promotionusage.AccountType": {
+            "type": "string",
+            "enum": [
+                "patient",
+                "customer",
+                "clinic",
+                "sales",
+                "NPI"
+            ],
+            "x-enum-varnames": [
+                "AccountTypePatient",
+                "AccountTypeCustomer",
+                "AccountTypeClinic",
+                "AccountTypeSales",
+                "AccountTypeNPI"
+            ]
+        }
+    }
+}

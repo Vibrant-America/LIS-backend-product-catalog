@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+option go_package = "./;lis";
+package lis;
+
+service PermissionService{
+  rpc GetPermissionByHex(GetPermissionByHexRequest) returns (GetPermissionByHexResponse){}
+
+}
+
+message GetPermissionByHexRequest{
+  string hex = 1;
+
+}
+
+message GetPermissionByHexResponse{
+  repeated SinglePermission permission_list = 1;
+}
+
+message SinglePermission{
+  string permission_name = 1;
+  string permission_group = 2;
+}
